@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+  <link rel="stylesheet" href="CSS/style.css">
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <!-- Rating state start -->
+  <main class="box" id="rating_start">
+    <img src="images/icon-star.svg" alt="icon-star" id="star">
+    <h2>How did we do?</h2>
+    <p>
+      Please let us know how we did with your support request. All feedback is appreciated
+      to help us improve our offering!
+    </p>
+    <br>
+    <div class="container">
+      <button class="btn_rate" value="1">1</button>
+      <button class="btn_rate" value="2">2</button>
+      <button class="btn_rate" value="3">3</button>
+      <button class="btn_rate" value="4">4</button>
+      <button class="btn_rate" value="5">5</button>
+    </div>
+    <br>
+    <button id="submit"><h3>Submit</h3></button>
+  </main>
+
+  <!-- Rating state end -->
+
+  <!-- Thank you state start -->
+
+  <main id="rating_end" class="box">
+    <img src="images/illustration-thank-you.svg" alt="illustration-thank-you" id="icon_thank">
+    <p id="range_rate">You selected <span id="txt"></span> out of 5</p>
+    <h2>Thank you!</h2>
+    <p>
+      We appreciate you taking the time to give a rating. If you ever need more support,
+      don’t hesitate to get in touch!
+    </p>
+  </main>
+
+  <!-- Thank you state end -->
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script>
+    var valor;
+
+    var txt = document.getElementById('txt');
+    var rate = document.getElementsByClassName('btn_rate');
+    var rating_start = document.getElementById('rating_start') ;
+    var rating_end = document.getElementById('rating_end');
+    var btn_submit = document.getElementById('submit');
+
+    for(var x = 0; x < rate.length; x++){
+      rate[x].addEventListener('click',function(element){
+        element = this;
+        valor = element.value;
+        console.log(valor);
+      })
+    }
+    btn_submit.addEventListener('click',()=>{
+      if(valor == undefined){
+        alert('please select one of the rating');
+      }
+      else{
+        rating_start.style.display = "none";
+        rating_end.style.display = "block";
+        txt.innerText = valor;
+      }
+    })
+  </script>
+</body>
+</html>
